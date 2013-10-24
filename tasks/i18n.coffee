@@ -17,14 +17,13 @@ module.exports = (grunt) ->
   translateTemplates = (templatePath, localePath, options) ->
     template = grunt.file.read templatePath
     local = grunt.file.readJSON localePath
-    localizedTemplate = grunt.template.process template, {data: local}
-    outputFolder = path.basename localePath, path.extname localePath
-    output = generateOutputPath outputFolder, templatePath, options
+    localizedTemplate = grunt.template.process template, {data: local.data}
+    output = generateOutputPath templatePath, options
     grunt.file.write output, localizedTemplate
 
-  generateOutputPath = (localeFolder, filepath, options) ->
+  generateOutputPath = (filepath, options) ->
     filepath = filepath.slice options.base.length if grunt.util._.startsWith filepath, options.base
     filepath = grunt.util._.trim filepath, path.sep
-    [options.output, localeFolder, filepath].join path.sep
+    [options.output, filepath].join path.sep
 
   return @

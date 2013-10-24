@@ -38,7 +38,7 @@ module.exports = (grunt) ->
     nodeunit:
       tests: ['test/*_test.coffee']
 
-  grunt.loadTasks 'src'
+  grunt.loadTasks 'tasks'
 
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-coffeelint'
